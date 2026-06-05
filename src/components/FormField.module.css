@@ -1,0 +1,45 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.label {
+  color: #344054;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.field input,
+.field select,
+.field textarea {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #d7dce3;
+  border-radius: 8px;
+  color: #111827;
+  font: inherit;
+  min-height: 54px;
+  outline: none;
+  padding: 0.9rem 1rem;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.field textarea {
+  min-height: 116px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: #f47a20;
+  box-shadow: 0 0 0 4px rgba(244, 122, 32, 0.15);
+}
+
+.error {
+  color: #d92d20;
+  font-size: 0.84rem;
+  font-weight: 700;
+}

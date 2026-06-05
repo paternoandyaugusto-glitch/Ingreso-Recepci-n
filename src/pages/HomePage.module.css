@@ -1,0 +1,90 @@
+.home {
+  align-items: center;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.95), rgba(244, 244, 244, 0.86)),
+    radial-gradient(circle at 15% 85%, rgba(244, 122, 32, 0.16), transparent 28rem),
+    radial-gradient(circle at 85% 20%, rgba(76, 175, 80, 0.14), transparent 28rem),
+    #f4f4f4;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  position: relative;
+}
+
+.northfieldLogo {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  position: absolute;
+  right: clamp(1rem, 3vw, 2.5rem);
+  top: clamp(1rem, 3vw, 2.5rem);
+  touch-action: manipulation;
+}
+
+.northfieldLogo img {
+  height: clamp(72px, 10vw, 122px);
+  width: auto;
+}
+
+.institutionalLogo {
+  bottom: clamp(1rem, 3vw, 2.5rem);
+  height: clamp(86px, 14vw, 172px);
+  left: clamp(1rem, 3vw, 2.5rem);
+  position: absolute;
+  width: auto;
+}
+
+.welcome {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  text-align: center;
+  width: min(100%, 820px);
+}
+
+.welcome h1 {
+  font-size: clamp(3.2rem, 10vw, 7.8rem);
+  line-height: 0.92;
+  margin: 0;
+}
+
+.school {
+  color: #1f2937;
+  font-size: clamp(1.45rem, 4vw, 3rem);
+  font-weight: 900;
+  margin: 0.5rem 0 0;
+}
+
+.helper {
+  color: #667085;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 700;
+  margin: 0.75rem 0 2rem;
+}
+
+.actions {
+  display: grid;
+  gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  justify-items: center;
+  width: 100%;
+}
+
+@media (max-width: 720px) {
+  .home {
+    align-items: flex-start;
+    padding-top: 8.5rem;
+  }
+
+  .actions {
+    grid-template-columns: 1fr;
+  }
+
+  .institutionalLogo {
+    opacity: 0.35;
+  }
+}

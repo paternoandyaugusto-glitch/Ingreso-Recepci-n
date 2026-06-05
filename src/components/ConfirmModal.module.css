@@ -1,0 +1,36 @@
+.backdrop {
+  align-items: center;
+  background: rgba(15, 23, 42, 0.52);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 1rem;
+  position: fixed;
+  z-index: 60;
+}
+
+.modal {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.25);
+  max-width: 430px;
+  padding: 1.5rem;
+  width: 100%;
+}
+
+.modal h2 {
+  font-size: 1.25rem;
+  margin: 0 0 0.65rem;
+}
+
+.modal p {
+  color: #475467;
+  margin: 0;
+}
+
+.actions {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 1.5rem;
+}

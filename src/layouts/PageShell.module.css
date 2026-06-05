@@ -1,0 +1,60 @@
+.shell {
+  background:
+    radial-gradient(circle at top left, rgba(244, 122, 32, 0.12), transparent 30rem),
+    #f4f4f4;
+  min-height: 100vh;
+  padding: clamp(1rem, 3vw, 2.5rem);
+}
+
+.header {
+  align-items: center;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto 1fr auto;
+  margin: 0 auto 1.5rem;
+  max-width: 1120px;
+}
+
+.back {
+  align-items: center;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.1);
+  display: inline-flex;
+  height: 52px;
+  justify-content: center;
+  width: 52px;
+}
+
+.back svg {
+  height: 24px;
+  width: 24px;
+}
+
+.eyebrow {
+  color: #f47a20;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.header h1 {
+  font-size: clamp(1.7rem, 4vw, 3rem);
+  line-height: 1;
+  margin: 0.2rem 0 0;
+}
+
+.logo {
+  height: clamp(52px, 8vw, 74px);
+  width: auto;
+}
+
+@media (max-width: 560px) {
+  .header {
+    grid-template-columns: auto 1fr;
+  }
+
+  .logo {
+    display: none;
+  }
+}
