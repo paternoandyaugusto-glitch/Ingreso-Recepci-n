@@ -69,8 +69,7 @@ const deleteVisitor = (id: string): void => {
 
 const getAllVisitors = (): Visitor[] => readVisitors();
 
-const getActiveVisitors = (): Visitor[] =>
-  readVisitors().filter((visitor) => visitor.activeStatus);
+const getActiveVisitors = (): Visitor[] => readVisitors().filter((visitor) => visitor.activeStatus);
 
 const getHistoricalVisitors = (): Visitor[] =>
   readVisitors().filter((visitor) => !visitor.activeStatus);

@@ -1,7 +1,6 @@
 .shell {
   background:
-    radial-gradient(circle at top left, rgba(244, 122, 32, 0.12), transparent 30rem),
-    #f4f4f4;
+    radial-gradient(circle at top left, rgba(244, 122, 32, 0.12), transparent 30rem), #f4f4f4;
   min-height: 100vh;
   padding: clamp(1rem, 3vw, 2.5rem);
 }

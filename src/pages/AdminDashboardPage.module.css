@@ -1,7 +1,5 @@
 .dashboard {
-  background:
-    radial-gradient(circle at 0 0, rgba(244, 122, 32, 0.1), transparent 28rem),
-    #f4f4f4;
+  background: radial-gradient(circle at 0 0, rgba(244, 122, 32, 0.1), transparent 28rem), #f4f4f4;
   min-height: 100vh;
   padding: clamp(1rem, 2.5vw, 2rem);
 }

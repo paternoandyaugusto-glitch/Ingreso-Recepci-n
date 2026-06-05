@@ -5,7 +5,13 @@ import { FormField } from '../components/FormField';
 import { Toast } from '../components/Toast';
 import { PageShell } from '../layouts/PageShell';
 import { useVisitorStore } from '../store/visitorStore';
-import { NewVisitorInput, VisitorDestination, VisitorRole, visitorDestinations, visitorRoles } from '../types/visitor';
+import {
+  NewVisitorInput,
+  VisitorDestination,
+  VisitorRole,
+  visitorDestinations,
+  visitorRoles,
+} from '../types/visitor';
 import styles from './CheckInPage.module.css';
 
 type Errors = Partial<Record<keyof NewVisitorInput, string>>;
@@ -108,7 +114,9 @@ export function CheckInPage() {
         </FormField>
         <FormField error={errors.destination} label="Destination">
           <select
-            onChange={(event) => updateField('destination', event.target.value as VisitorDestination)}
+            onChange={(event) =>
+              updateField('destination', event.target.value as VisitorDestination)
+            }
             value={form.destination}
           >
             <option value="">Select destination</option>
@@ -120,7 +128,10 @@ export function CheckInPage() {
           </select>
         </FormField>
         <FormField label="Optional Notes">
-          <textarea onChange={(event) => updateField('notes', event.target.value)} value={form.notes} />
+          <textarea
+            onChange={(event) => updateField('notes', event.target.value)}
+            value={form.notes}
+          />
         </FormField>
         <div className={styles.actions}>
           <AppButton type="submit" variant="orange">

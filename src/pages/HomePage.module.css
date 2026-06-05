@@ -3,8 +3,7 @@
   background:
     linear-gradient(115deg, rgba(255, 255, 255, 0.95), rgba(244, 244, 244, 0.86)),
     radial-gradient(circle at 15% 85%, rgba(244, 122, 32, 0.16), transparent 28rem),
-    radial-gradient(circle at 85% 20%, rgba(76, 175, 80, 0.14), transparent 28rem),
-    #f4f4f4;
+    radial-gradient(circle at 85% 20%, rgba(76, 175, 80, 0.14), transparent 28rem), #f4f4f4;
   display: flex;
   justify-content: center;
   min-height: 100vh;

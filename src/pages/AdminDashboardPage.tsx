@@ -28,11 +28,26 @@ import styles from './AdminDashboardPage.module.css';
 const COLORS = ['#f47a20', '#4caf50', '#2f80ed', '#7a5af8', '#344054', '#d92d20'];
 const PAGE_SIZE = 6;
 
-type CurrentSortKey = 'fullName' | 'role' | 'dni' | 'personVisited' | 'destination' | 'checkInDateTime';
-type HistorySortKey = 'fullName' | 'role' | 'dni' | 'destination' | 'checkInDateTime' | 'checkOutDateTime';
+type CurrentSortKey =
+  | 'fullName'
+  | 'role'
+  | 'dni'
+  | 'personVisited'
+  | 'destination'
+  | 'checkInDateTime';
+type HistorySortKey =
+  | 'fullName'
+  | 'role'
+  | 'dni'
+  | 'destination'
+  | 'checkInDateTime'
+  | 'checkOutDateTime';
 
 const compare = (a: string | undefined, b: string | undefined, direction: SortDirection) => {
-  const result = (a ?? '').localeCompare(b ?? '', undefined, { numeric: true, sensitivity: 'base' });
+  const result = (a ?? '').localeCompare(b ?? '', undefined, {
+    numeric: true,
+    sensitivity: 'base',
+  });
   return direction === 'asc' ? result : -result;
 };
 
@@ -50,16 +65,23 @@ export function AdminDashboardPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [historyPage, setHistoryPage] = useState(1);
   const [deleteTarget, setDeleteTarget] = useState<Visitor | null>(null);
-  const [currentSort, setCurrentSort] = useState<{ key: CurrentSortKey; direction: SortDirection }>({
-    key: 'checkInDateTime',
-    direction: 'desc',
-  });
-  const [historySort, setHistorySort] = useState<{ key: HistorySortKey; direction: SortDirection }>({
-    key: 'checkInDateTime',
-    direction: 'desc',
-  });
+  const [currentSort, setCurrentSort] = useState<{ key: CurrentSortKey; direction: SortDirection }>(
+    {
+      key: 'checkInDateTime',
+      direction: 'desc',
+    },
+  );
+  const [historySort, setHistorySort] = useState<{ key: HistorySortKey; direction: SortDirection }>(
+    {
+      key: 'checkInDateTime',
+      direction: 'desc',
+    },
+  );
 
-  const activeVisitors = useMemo(() => visitors.filter((visitor) => visitor.activeStatus), [visitors]);
+  const activeVisitors = useMemo(
+    () => visitors.filter((visitor) => visitor.activeStatus),
+    [visitors],
+  );
   const historicalVisitors = useMemo(
     () => visitors.filter((visitor) => !visitor.activeStatus),
     [visitors],
@@ -91,7 +113,9 @@ export function AdminDashboardPage() {
     const query = normalize(currentQuery);
     return activeVisitors
       .filter((visitor) => searchableVisitor(visitor).includes(query))
-      .sort((a, b) => compare(String(a[currentSort.key]), String(b[currentSort.key]), currentSort.direction));
+      .sort((a, b) =>
+        compare(String(a[currentSort.key]), String(b[currentSort.key]), currentSort.direction),
+      );
   }, [activeVisitors, currentQuery, currentSort]);
 
   const filteredHistory = useMemo(() => {
@@ -100,7 +124,11 @@ export function AdminDashboardPage() {
       .filter((visitor) => searchableVisitor(visitor).includes(query))
       .filter((visitor) => !historyDate || visitor.checkInDateTime.slice(0, 10) === historyDate)
       .sort((a, b) =>
-        compare(String(a[historySort.key] ?? ''), String(b[historySort.key] ?? ''), historySort.direction),
+        compare(
+          String(a[historySort.key] ?? ''),
+          String(b[historySort.key] ?? ''),
+          historySort.direction,
+        ),
       );
   }, [historicalVisitors, historyDate, historyQuery, historySort]);
 
@@ -113,7 +141,10 @@ export function AdminDashboardPage() {
   };
 
   const exportCsv = () => {
-    CsvService.downloadCsv('northfield-visitor-history.csv', CsvService.toVisitorHistoryCsv(filteredHistory));
+    CsvService.downloadCsv(
+      'northfield-visitor-history.csv',
+      CsvService.toVisitorHistoryCsv(filteredHistory),
+    );
   };
 
   return (
@@ -219,12 +250,30 @@ export function AdminDashboardPage() {
           <table>
             <thead>
               <tr>
-                <SortableHeader label="Name" onSort={() => toggleSort(currentSort, setCurrentSort, 'fullName')} />
-                <SortableHeader label="Role" onSort={() => toggleSort(currentSort, setCurrentSort, 'role')} />
-                <SortableHeader label="DNI" onSort={() => toggleSort(currentSort, setCurrentSort, 'dni')} />
-                <SortableHeader label="Person Visited" onSort={() => toggleSort(currentSort, setCurrentSort, 'personVisited')} />
-                <SortableHeader label="Destination" onSort={() => toggleSort(currentSort, setCurrentSort, 'destination')} />
-                <SortableHeader label="Check In Time" onSort={() => toggleSort(currentSort, setCurrentSort, 'checkInDateTime')} />
+                <SortableHeader
+                  label="Name"
+                  onSort={() => toggleSort(currentSort, setCurrentSort, 'fullName')}
+                />
+                <SortableHeader
+                  label="Role"
+                  onSort={() => toggleSort(currentSort, setCurrentSort, 'role')}
+                />
+                <SortableHeader
+                  label="DNI"
+                  onSort={() => toggleSort(currentSort, setCurrentSort, 'dni')}
+                />
+                <SortableHeader
+                  label="Person Visited"
+                  onSort={() => toggleSort(currentSort, setCurrentSort, 'personVisited')}
+                />
+                <SortableHeader
+                  label="Destination"
+                  onSort={() => toggleSort(currentSort, setCurrentSort, 'destination')}
+                />
+                <SortableHeader
+                  label="Check In Time"
+                  onSort={() => toggleSort(currentSort, setCurrentSort, 'checkInDateTime')}
+                />
                 <th className="no-print">Actions</th>
               </tr>
             </thead>
@@ -238,7 +287,11 @@ export function AdminDashboardPage() {
                   <td>{visitor.destination}</td>
                   <td>{DateService.formatTime(visitor.checkInDateTime)}</td>
                   <td className="no-print">
-                    <button className={styles.textAction} onClick={() => checkOutVisitor(visitor.id)} type="button">
+                    <button
+                      className={styles.textAction}
+                      onClick={() => checkOutVisitor(visitor.id)}
+                      type="button"
+                    >
                       Manual Check-Out
                     </button>
                   </td>
@@ -275,12 +328,30 @@ export function AdminDashboardPage() {
           <table>
             <thead>
               <tr>
-                <SortableHeader label="Name" onSort={() => toggleSort(historySort, setHistorySort, 'fullName')} />
-                <SortableHeader label="Role" onSort={() => toggleSort(historySort, setHistorySort, 'role')} />
-                <SortableHeader label="DNI" onSort={() => toggleSort(historySort, setHistorySort, 'dni')} />
-                <SortableHeader label="Destination" onSort={() => toggleSort(historySort, setHistorySort, 'destination')} />
-                <SortableHeader label="Check In" onSort={() => toggleSort(historySort, setHistorySort, 'checkInDateTime')} />
-                <SortableHeader label="Check Out" onSort={() => toggleSort(historySort, setHistorySort, 'checkOutDateTime')} />
+                <SortableHeader
+                  label="Name"
+                  onSort={() => toggleSort(historySort, setHistorySort, 'fullName')}
+                />
+                <SortableHeader
+                  label="Role"
+                  onSort={() => toggleSort(historySort, setHistorySort, 'role')}
+                />
+                <SortableHeader
+                  label="DNI"
+                  onSort={() => toggleSort(historySort, setHistorySort, 'dni')}
+                />
+                <SortableHeader
+                  label="Destination"
+                  onSort={() => toggleSort(historySort, setHistorySort, 'destination')}
+                />
+                <SortableHeader
+                  label="Check In"
+                  onSort={() => toggleSort(historySort, setHistorySort, 'checkInDateTime')}
+                />
+                <SortableHeader
+                  label="Check Out"
+                  onSort={() => toggleSort(historySort, setHistorySort, 'checkOutDateTime')}
+                />
                 <th>Duration</th>
                 <th className="no-print">Actions</th>
               </tr>
@@ -294,7 +365,9 @@ export function AdminDashboardPage() {
                   <td>{visitor.destination}</td>
                   <td>{DateService.formatDateTime(visitor.checkInDateTime)}</td>
                   <td>{DateService.formatDateTime(visitor.checkOutDateTime)}</td>
-                  <td>{DateService.formatDuration(visitor.checkInDateTime, visitor.checkOutDateTime)}</td>
+                  <td>
+                    {DateService.formatDuration(visitor.checkInDateTime, visitor.checkOutDateTime)}
+                  </td>
                   <td className="no-print">
                     <button
                       aria-label={`Delete ${visitor.fullName}`}
@@ -362,7 +435,11 @@ function TableHeader({
       <h2>{title}</h2>
       <label className={`${styles.adminSearch} no-print`}>
         <Search size={18} />
-        <input onChange={(event) => onChange(event.target.value)} placeholder={placeholder} value={value} />
+        <input
+          onChange={(event) => onChange(event.target.value)}
+          placeholder={placeholder}
+          value={value}
+        />
       </label>
     </div>
   );

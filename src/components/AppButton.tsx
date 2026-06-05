@@ -6,7 +6,12 @@ interface AppButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'orange' | 'green' | 'neutral' | 'danger';
 }
 
-export function AppButton({ children, variant = 'orange', className = '', ...props }: AppButtonProps) {
+export function AppButton({
+  children,
+  variant = 'orange',
+  className = '',
+  ...props
+}: AppButtonProps) {
   return (
     <button className={`${styles.button} ${styles[variant]} ${className}`} {...props}>
       {children}
